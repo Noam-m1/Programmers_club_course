@@ -1,0 +1,40 @@
+
+def power_of(x, n):
+    if n == 0:
+        return 1
+    if n < 0:
+        return 1/power_of(x, -n) 
+    else:
+        return x * power_of(x, n-1) 
+
+print(power_of(2,-4))
+
+def decimal_to_binary(num, bits):
+    binary = []
+    for i in reversed(range(bits)):
+        if num >= 2**i:
+            binary.append(1)
+            num -= 2**i
+        else:
+            binary.append(0)
+    return binary
+
+def twos_complement(binary, bits):
+    inverted = [1 - bit for bit in binary]
+    carry = 1
+    for i in range(bits - 1, -1, -1):
+        if inverted[i] == 1 and carry == 1:
+            inverted[i] = 0
+            carry = 1
+        elif inverted[i] == 0 and carry == 1:
+            inverted[i] = 1
+            carry = 0
+    return inverted
+    
+num = int(input("please pick a number: "))
+bits = int(input("please pick your number of bytes: "))
+
+binary = decimal_to_binary(num, bits) 
+print("this is the binary represntion of your number: " , binary)
+negitive = twos_complement(binary, bits)
+print("this is the negetive binary represntion of your number: " ,negitive)
