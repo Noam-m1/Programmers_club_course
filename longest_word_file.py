@@ -14,5 +14,6 @@ def how_many_words (N, file):
     for word in range(N):
         print(dictionary[word])
 
-how_many_words(3, r"C:\Users\noami\OneDrive\Documents\programmers club\keylog.txt")
+filepath = input("please enter your desired filepath:")
+how_many_words(3, filepath)
 
